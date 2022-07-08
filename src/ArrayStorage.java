@@ -8,13 +8,6 @@ public class ArrayStorage {
     private int countResume;
 
     public void clear() {
-        for (Resume resume : storage) {
-            if (resume != null) {
-                countResume++;
-            } else {
-                break;
-            }
-        }
         Arrays.fill(storage, 0, countResume, null);
         countResume = 0;
     }
@@ -38,6 +31,7 @@ public class ArrayStorage {
             if (storage[i].uuid.equals(uuid)) {
                 countResume--;
                 System.arraycopy(storage, i + 1, storage, i, countResume - i);
+                storage[countResume] = null;
                 System.out.println("Success deleted");
                 return;
             }
