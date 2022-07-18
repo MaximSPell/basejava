@@ -11,10 +11,13 @@ public class MainTestArrayStorage {
         resumeSecond.uuid = "uuid2";
         Resume resumeThird = new Resume();
         resumeThird.uuid = "uuid3";
+        Resume resumeTestUpdate = new Resume();
+        resumeTestUpdate.uuid = "uuid3";
 
         ARRAY_STORAGE.save(resumeFirst);
         ARRAY_STORAGE.save(resumeSecond);
         ARRAY_STORAGE.save(resumeThird);
+        ARRAY_STORAGE.update(resumeTestUpdate);
 
         System.out.println("Get r1: " + ARRAY_STORAGE.get(resumeFirst.uuid));
         System.out.println("Size: " + ARRAY_STORAGE.size());
