@@ -6,7 +6,8 @@ import static java.util.logging.Logger.global;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    private final Resume[] storage = new Resume[10000];
+    protected static final int STORAGE_LIMIT = 10000;
+    private final Resume[] storage = new Resume[STORAGE_LIMIT];
     private int size;
 
     private int findIndex(String uuid) {
@@ -29,17 +30,18 @@ public class ArrayStorage {
             storage[index] = resume;
             return;
         }
-        System.out.println("The resume not found");
+        if (index < 0) {
+            System.out.println("The resume not found");
+        }
+        storage[index] = resume;
     }
 
     public void save(Resume resume) {
         int index = findIndex(resume.uuid);
         if (size >= storage.length) {
             System.out.println("Not enough space!");
-            return;
         } else if (index != -1) {
             System.out.println("The resume already exist");
-            return;
         } else {
             storage[size] = resume;
             size++;
@@ -61,7 +63,6 @@ public class ArrayStorage {
             System.out.println("The resume not found");
             return;
         }
-        storage[index] = null;
         size--;
         storage[index] = storage[size];
         storage[size] = null;
