@@ -1,5 +1,7 @@
 package storage;
 
+import model.Resume;
+
 /**
  * Array based storage for Resumes
  */
@@ -15,5 +17,18 @@ public class ArrayStorage extends AbstractArrayStorage {
             }
         }
         return -1;
+    }
+
+    @Override
+    protected void saveResume(Resume resume, int index) {
+        storage[index + 1] = resume;
+        size++;
+    }
+
+    @Override
+    protected void deleteResume(String uuid, int index) {
+        storage[index] = storage[size - 1];
+        storage[size - 1] = null;
+        size--;
     }
 }
