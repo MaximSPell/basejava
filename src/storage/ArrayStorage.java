@@ -21,14 +21,11 @@ public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void saveResume(Resume resume, int index) {
-        storage[index + 1] = resume;
-        size++;
+        storage[size] = resume;
     }
 
     @Override
     protected void deleteResume(String uuid, int index) {
         storage[index] = storage[size - 1];
-        storage[size - 1] = null;
-        size--;
     }
 }
